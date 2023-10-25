@@ -5,7 +5,7 @@ account: jjallaire
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 10298727
-bundleId: 7846991
+bundleId: 7851545
 url: https://jjallaire.shinyapps.io/diamonds/
 version: 1
 quarto_version: 99.9.9

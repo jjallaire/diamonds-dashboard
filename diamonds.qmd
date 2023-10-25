@@ -1,20 +1,18 @@
 ---
 title: "Diamonds Explorer"
 author: "Barkamian Analytics"
-format:
-  dashboard:
-     orientation: columns
+format: dashboard
 server: shiny
 ---
 
 ```{r}
 #| context: setup
-library(shiny)
 library(ggplot2)
+library(shiny)
 dataset <- diamonds
 ```
 
-## Column {.sidebar}
+# {.sidebar}
 
 ```{r}
 sliderInput('sampleSize', 'Sample Size', 
@@ -29,7 +27,8 @@ checkboxInput('smooth', 'Smooth', value = TRUE)
 ```{r}
 selectInput('x', 'X', names(dataset)) 
 selectInput('y', 'Y', names(dataset), names(dataset)[[2]])
-selectInput('color', 'Color', c('None', names(dataset)))
+selectInput('color', 'Color', c('None', names(dataset)), 
+             selected = "clarity")
 ```
 
 ```{r}
@@ -39,15 +38,15 @@ selectInput('facet_col', 'Facet Column',
   c(None='.', names(diamonds[sapply(diamonds, is.factor)])))
 ```
 
-## Column {.tabset}
+# Plot
 
 ```{r}
-#| title: Plot
 plotOutput('plot')
 ```
 
+# Data
+
 ```{r}
-#| title: Data
 tableOutput('data')
 ```
 
