@@ -1,7 +1,9 @@
 ---
 title: "Diamonds Explorer"
 author: "Barkamian Analytics"
-format: dashboard
+format: 
+  dashboard:
+    theme: united
 server: shiny
 ---
 
@@ -40,6 +42,23 @@ selectInput('facet_col', 'Facet Column',
 
 # Plot
 
+## Row {.flow}
+
+```{r}
+library(bslib)
+library(bsicons)
+value_box(
+  title = "I got",
+  # value = "99 problems",
+  value = textOutput("valuetext"),
+  showcase = bs_icon("music-note-beamed"),
+  p("bslib ain't one", bs_icon("emoji-smile")),
+  p("hit me", bs_icon("suit-spade"))
+)
+```
+
+## Row
+
 ```{r}
 plotOutput('plot')
 ```
@@ -55,6 +74,10 @@ tableOutput('data')
 
 dataset <- reactive({
   diamonds[sample(nrow(diamonds), input$sampleSize),]
+})
+
+output$valuetext <- renderText({
+  "99 problems"
 })
  
 output$plot <- renderPlot({
